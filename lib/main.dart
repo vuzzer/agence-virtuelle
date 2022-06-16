@@ -19,6 +19,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ResponsiveSizer(builder: (context, orientation, screenType) {
       return MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'Agence Virtuelle',
         theme: ThemeData(
           primarySwatch: Colors.blue,

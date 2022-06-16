@@ -2,12 +2,21 @@ import 'package:agency/screens/start_screen.dart';
 import 'package:agency/screens/verification_screen.dart';
 import 'package:flutter/material.dart';
 
-class ButtonOtp extends StatefulWidget {
+class ButtonCustom extends StatefulWidget {
+  final String text;
+  final Color color;
+  final Function onPressed;
+  const ButtonCustom(
+      {Key? key,
+      required this.text,
+      required this.color,
+      required this.onPressed})
+      : super(key: key);
   @override
-  State<ButtonOtp> createState() => _ButtonOtpState();
+  State<ButtonCustom> createState() => _ButtonCustomState();
 }
 
-class _ButtonOtpState extends State<ButtonOtp> {
+class _ButtonCustomState extends State<ButtonCustom> {
   bool _isLoading = false;
   @override
   Widget build(BuildContext context) {
@@ -22,11 +31,10 @@ class _ButtonOtpState extends State<ButtonOtp> {
           setState(() {
             _isLoading = false;
           });
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => StartScreen()));
+          widget.onPressed();
         });
       },
-      color: Colors.black,
+      color: widget.color,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
       padding: EdgeInsets.symmetric(vertical: 15, horizontal: 30),
       child: _isLoading
@@ -35,12 +43,12 @@ class _ButtonOtpState extends State<ButtonOtp> {
               height: 20,
               child: CircularProgressIndicator(
                 backgroundColor: Colors.white,
-                color: Colors.black,
+                color: widget.color,
                 strokeWidth: 2,
               ),
             )
           : Text(
-              "Request OTP",
+              widget.text,
               style: TextStyle(color: Colors.white),
             ),
     );

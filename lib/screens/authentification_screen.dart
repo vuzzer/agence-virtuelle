@@ -1,4 +1,5 @@
 import 'package:agency/widgets/background_image.dart';
+import 'package:agency/widgets/button_custom.dart';
 import 'package:agency/widgets/connection_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
@@ -26,6 +27,7 @@ class _AuthentificationScreen extends State<AuthentificationScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Stack(
       children: <Widget>[
         const BackgroundImage(),
@@ -57,21 +59,14 @@ class _AuthentificationScreen extends State<AuthentificationScreen> {
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(
-                  height: 30,
+                  height: 60,
                 ),
-                ConnectionButton(
-                    text: 'Se connecter',
-                    onPressed: () {
+                ButtonCustom(text: 'Accéder à mon agence', color: const Color(0xFF4169E1), onPressed:  () {
                       login(context);
                     }),
                 const SizedBox(
                   height: 20,
                 ),
-                ConnectionButton(
-                    text: 'S\'inscrire',
-                    onPressed: () {
-                      register(context);
-                    }),
               ],
             ),
           ),

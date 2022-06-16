@@ -1,10 +1,10 @@
+import 'package:agency/screens/login_screen.dart';
 import 'package:agency/screens/start_screen.dart';
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 
 import 'package:flutter_verification_code/flutter_verification_code.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class VerificationScreen extends StatefulWidget {
   const VerificationScreen({Key? key}) : super(key: key);
@@ -62,7 +62,6 @@ class _VerificatoinState extends State<VerificationScreen> {
     Timer.periodic(Duration(seconds: 5), (timer) {
       setState(() {
         _currentIndex++;
-
         if (_currentIndex == 3) _currentIndex = 0;
       });
     });
@@ -107,8 +106,8 @@ class _VerificatoinState extends State<VerificationScreen> {
                             seconds: 1,
                           ),
                           curve: Curves.linear,
-                          child: Image.network(
-                            'https://ouch-cdn2.icons8.com/eza3-Rq5rqbcGs4EkHTolm43ZXQPGH_R4GugNLGJzuo/rs:fit:784:784/czM6Ly9pY29uczgu/b3VjaC1wcm9kLmFz/c2V0cy9zdmcvNjk3/L2YzMDAzMWUzLTcz/MjYtNDg0ZS05MzA3/LTNkYmQ0ZGQ0ODhj/MS5zdmc.png',
+                          child: Image.asset(
+                            'assets/images/one.png',
                           ),
                         ),
                       ),
@@ -121,8 +120,8 @@ class _VerificatoinState extends State<VerificationScreen> {
                           opacity: _currentIndex == 1 ? 1 : 0,
                           duration: Duration(seconds: 1),
                           curve: Curves.linear,
-                          child: Image.network(
-                            'https://ouch-cdn2.icons8.com/pi1hTsTcrgVklEBNOJe2TLKO2LhU6OlMoub6FCRCQ5M/rs:fit:784:666/czM6Ly9pY29uczgu/b3VjaC1wcm9kLmFz/c2V0cy9zdmcvMzAv/MzA3NzBlMGUtZTgx/YS00MTZkLWI0ZTYt/NDU1MWEzNjk4MTlh/LnN2Zw.png',
+                          child: Image.asset(
+                            'assets/images/two.png',
                           ),
                         ),
                       ),
@@ -135,8 +134,8 @@ class _VerificatoinState extends State<VerificationScreen> {
                           opacity: _currentIndex == 2 ? 1 : 0,
                           duration: Duration(seconds: 1),
                           curve: Curves.linear,
-                          child: Image.network(
-                            'https://ouch-cdn2.icons8.com/ElwUPINwMmnzk4s2_9O31AWJhH-eRHnP9z8rHUSS5JQ/rs:fit:784:784/czM6Ly9pY29uczgu/b3VjaC1wcm9kLmFz/c2V0cy9zdmcvNzkw/Lzg2NDVlNDllLTcx/ZDItNDM1NC04YjM5/LWI0MjZkZWI4M2Zk/MS5zdmc.png',
+                          child: Image.asset(
+                            'assets/images/three.png',
                           ),
                         ),
                       )
