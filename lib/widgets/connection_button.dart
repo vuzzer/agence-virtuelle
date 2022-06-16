@@ -10,7 +10,7 @@ class ConnectionButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
+    return InkWell(child: ElevatedButton(
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
         padding: const EdgeInsets.symmetric(
@@ -32,6 +32,6 @@ class ConnectionButton extends StatelessWidget {
           color: Colors.white,
         ),
       ),
-    );
+    ));
   }
 }

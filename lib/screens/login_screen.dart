@@ -1,3 +1,5 @@
+import 'package:agency/widgets/button_otp.dart';
+import 'package:agency/widgets/phone_number_field.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -6,31 +8,47 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-          child: SingleChildScrollView(
-              child: Container(
-        child: Column(children: <Widget>[
-          Container(
-            decoration: const  BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage('assets/images/happy.png'))),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          const Text('Se connecter à'),
-          const SizedBox(
-            height: 5,
-          ),
-          const Text(
-            'Agence virtuelle',
-            style: const TextStyle(color: Color(0xFFF15412)),
-          ),
-          const SizedBox(
-            height: 15,
-          ),
-        ]),
-      ))),
-    );
+      appBar: AppBar(title: const Text('Se connecter')),
+      body: SafeArea(child: SingleChildScrollView(child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 30),
+        child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              const SizedBox(height: 20,),
+            Container(
+              height: 200,
+              width: 200,
+              decoration: const  BoxDecoration(
+                  image: DecorationImage(
+                    fit: BoxFit.contain,
+                      image: AssetImage('assets/images/happy.png'))),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Center(child:
+            Text('Se connecter à',
+            style: Theme.of(context).textTheme.headline6,
+            )),
+            const SizedBox(
+              height: 5,
+            ),
+            const Text(
+              'Agence virtuelle',
+              style: TextStyle(color: Color(0xFFF15412), fontSize: 30),
+            ),
+            const SizedBox(
+              height: 66,
+            ),
+            PhoneNumberField(),
+            const SizedBox(height: 40,),
+          
+            ButtonOtp(),
+           
+
+          ]),
+      ),
+      
+    )));
   }
 }
