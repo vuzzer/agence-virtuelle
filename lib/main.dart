@@ -1,9 +1,10 @@
 import 'package:agency/screens/login_screen.dart';
+import 'package:agency/screens/start_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-import 'screens/authentification_screen.dart';
+import 'screens/accueil_screen.dart';
 
 void main() {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
@@ -32,11 +33,11 @@ class MyApp extends StatelessWidget {
                   fontSize: 20,
                   fontWeight: FontWeight.bold)),
         ),
-        home: const AuthentificationScreen(),
+        home: const AccueilScreen(),
         onGenerateRoute: (settings) {
           switch (settings.name) {
             case "/login":
-              return MaterialPageRoute(builder: (_) => const LoginScreen());
+              return MaterialPageRoute(builder: (_) => const StartScreen());
             default:
               return null;
           }
