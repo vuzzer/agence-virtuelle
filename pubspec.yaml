@@ -38,6 +38,11 @@ dependencies:
   simple_animations: ^4.1.0
   scrollable_positioned_list: ^0.3.2
   intl_phone_number_input: ^0.7.0+2
+  select_form_field: "^2.2.0"
+  image_picker: ^0.8.5+3
+  http: ^0.13.4
+  provider: ^6.0.3
+  dio: ^4.0.6
 
 
 
@@ -108,5 +113,22 @@ flutter:
            weight: 300
          - asset: assets/fonts/RobotoCondensed-Italic.ttf
            style: italic
+     - family: Montserrat
+       fonts:
+          - asset: assets/fonts/Montserrat-Black.ttf
+          - asset: assets/fonts/Montserrat-Bold.ttf
+          - asset: assets/fonts/Montserrat-ExtraBold.ttf
+          - asset: assets/fonts/Montserrat-Regular.ttf
+     - family: Seravek
+       fonts:
+          - asset: assets/fonts/Seravek-Basic.ttf
+     - family: IBMPlexSans
+       fonts:
+          - asset: assets/fonts/IBMPlexSans-Regular.ttf
+          - asset: assets/fonts/IBMPlexSans-Bold.ttf
+          - asset: assets/fonts/IBMPlexSans-SemiBold.ttf
+
+
+
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
