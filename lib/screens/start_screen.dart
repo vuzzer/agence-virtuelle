@@ -47,114 +47,123 @@ class _StartPageState extends State<StartScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Column(
-      children: [
-        const SizedBox(
-          height: 100,
-        ),
-        Container(
-          padding: const EdgeInsets.symmetric(horizontal: 50),
-          height: MediaQuery.of(context).size.height * 0.45,
-          width: MediaQuery.of(context).size.width,
-          child: GridView.builder(
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 3,
-                childAspectRatio: 1.0,
-                crossAxisSpacing: 8.0,
-                mainAxisSpacing: 8.0,
+        body:  Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const SizedBox(
+                height: 100,
               ),
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount: services.length,
-              itemBuilder: (BuildContext context, int index) {
-                return FadeAnimation(
-                    (1.0 + index) / 4,
-                    serviceContainer(
-                        services[index].imageURL, services[index].name, index));
-              }),
-        ),
-        Expanded(
-          child: Container(
-            decoration: const BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(80),
-                  topRight: Radius.circular(80),
-                )),
-            child: Column(
-              children: [
-                const SizedBox(
-                  height: 50,
-                ),
-                FadeAnimation(
-                    1.5,
-                    Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 40),
-                      child: Center(
-                        child: Text(
-                          'Un moyen simple, securisé et efficace pour prendre en main mes opérations dans une agence Moov',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 24,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.grey.shade900,
-                          ),
-                        ),
-                      ),
-                    )),
-                SizedBox(
-                  height: 20,
-                ),
-                FadeAnimation(
-                    1.5,
-                    Container(
-                      padding: EdgeInsets.symmetric(horizontal: 60),
-                      child: Center(
-                        child: Text(
-                          'Nous mettons à votre dispositon des opérations d\'agence.',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.grey.shade600,
-                          ),
-                        ),
-                      ),
-                    )),
-                FadeAnimation(
-                    1.5,
-                    Padding(
-                      padding: EdgeInsets.all(10.0),
-                      child: MaterialButton(
-                        elevation: 0,
-                        color: Colors.black,
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => SelectService(),
+              Expanded(
+                flex: 2,
+                child:  Container(
+                padding: const EdgeInsets.symmetric(horizontal: 50),
+                height: MediaQuery.of(context).size.height * 0.35,
+                width: MediaQuery.of(context).size.width,
+                child: GridView.builder(
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 3,
+                      childAspectRatio: 1.0,
+                      crossAxisSpacing: 8.0,
+                      mainAxisSpacing: 8.0,
+                    ),
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: services.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return FadeAnimation(
+                          (1.0 + index) / 4,
+                          serviceContainer(
+                              services[index].imageURL, services[index].name, index));
+                    }),
+              ),
+            
+
+              ),
+               Expanded(
+                flex: 1,
+                child: Container(
+                  decoration: const BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(80),
+                        topRight: Radius.circular(80),
+                      )),
+                  child: Column(
+                    children: [
+                      // const SizedBox(
+                      //   height: 50,
+                      // ),
+                      // FadeAnimation(
+                      //     1.5,
+                      //     Container(
+                      //       padding: const EdgeInsets.symmetric(horizontal: 40),
+                      //       child: Center(
+                      //         child: Text(
+                      //           'Un moyen simple, securisé et efficace pour prendre en main mes opérations dans une agence Moov',
+                      //           textAlign: TextAlign.center,
+                      //           style: TextStyle(
+                      //             fontSize: 24,
+                      //             fontWeight: FontWeight.bold,
+                      //             color: Colors.grey.shade900,
+                      //           ),
+                      //         ),
+                      //       ),
+                      //     )),
+                      // SizedBox(
+                      //   height: 20,
+                      // ),
+                      // FadeAnimation(
+                      //     1.5,
+                      //     Container(
+                      //       padding: EdgeInsets.symmetric(horizontal: 60),
+                      //       child: Center(
+                      //         child: Text(
+                      //           'Nous mettons à votre dispositon des opérations d\'agence.',
+                      //           textAlign: TextAlign.center,
+                      //           style: TextStyle(
+                      //             fontSize: 16,
+                      //             color: Colors.grey.shade600,
+                      //           ),
+                      //         ),
+                      //       ),
+                      //     )),
+                      
+                      FadeAnimation(
+                          1.5,
+                          Padding(
+                            padding: EdgeInsets.all(10.0),
+                            child: MaterialButton(
+                              elevation: 0,
+                              color: Colors.black,
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => SelectService(),
+                                  ),
+                                );
+                              },
+                              height: 55,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10)),
+                              child: Center(
+                                child: Text(
+                                  'Demarrer',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                              ),
                             ),
-                          );
-                        },
-                        height: 55,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10)),
-                        child: Center(
-                          child: Text(
-                            'Demarrer',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 18,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                        ),
-                      ),
-                    )),
-              ],
-            ),
+                          )),
+                    ],
+                  ),
+                ),
+              )
+            ],
           ),
-        )
-      ],
-    ));
+    );
   }
 
   serviceContainer(String image, String name, int index) {

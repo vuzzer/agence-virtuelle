@@ -38,6 +38,9 @@ dependencies:
   simple_animations: ^4.1.0
   scrollable_positioned_list: ^0.3.2
   intl_phone_number_input: ^0.7.0+2
+  select_form_field: "^2.2.0"
+  image_picker: ^0.8.5+3
+  http: ^0.13.4
 
 
 

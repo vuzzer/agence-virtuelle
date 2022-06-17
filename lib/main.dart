@@ -1,3 +1,4 @@
+import 'package:agency/screens/identification_screen.dart';
 import 'package:agency/screens/login_screen.dart';
 import 'package:agency/screens/start_screen.dart';
 import 'package:flutter/material.dart';
@@ -33,11 +34,15 @@ class MyApp extends StatelessWidget {
                   fontSize: 20,
                   fontWeight: FontWeight.bold)),
         ),
+        // home: IdentificationScreen(),
         home: const AccueilScreen(),
         onGenerateRoute: (settings) {
           switch (settings.name) {
             case "/login":
               return MaterialPageRoute(builder: (_) => const StartScreen());
+            case "/identification":
+              return MaterialPageRoute(builder: (_) =>  IdentificationScreen());
+            
             default:
               return null;
           }
