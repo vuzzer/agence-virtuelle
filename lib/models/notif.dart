@@ -1,12 +1,11 @@
 class Notif {
   int? id;
-  String? titre, motif, statut, date;
+  String? libelle, description, date;
 
   Notif.fromJson(Map<String, dynamic> json) {
     this.id = json["id"];
-    this.titre = json["titre"];
-    this.motif = json["motif"];
-    this.statut = json["statut"];
-    this.date = json["date"];
+    this.libelle = json["libelle"];
+    this.description = json["description"];
+    this.date = json["created_at"].split('T')[0]; 
   }
 }

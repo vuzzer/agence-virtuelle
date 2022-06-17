@@ -15,7 +15,8 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
   @override
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
-    NotifProvider notifProvider = Provider.of<NotifProvider>(context, listen: false);
+    NotifProvider notifProvider =
+        Provider.of<NotifProvider>(context, listen: false);
     notifProvider.getNotifs();
     return Scaffold(
       appBar: AppBar(
@@ -25,20 +26,11 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
         child: SingleChildScrollView(child: Consumer<NotifProvider>(
           builder: (context, notifProvider, child) {
             return Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                NotificationItem(
-                  screenSize: screenSize,
-                ),
-                NotificationItem(
-                  screenSize: screenSize,
-                ),
-                NotificationItem(
-                  screenSize: screenSize,
-                ),
-              ],
-            );
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: notifProvider.notifs
+                    .map((notif) => NotificationItem(screenSize: screenSize, notif : notif))
+                    .toList());
           },
         )),
       ),

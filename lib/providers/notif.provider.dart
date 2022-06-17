@@ -8,6 +8,7 @@ import 'package:http/http.dart' as http;
 
 class NotifProvider extends ChangeNotifier {
   List<Notif> notifs = [];
+  bool isFirstRequest = true;
 
   Future<void> getNotifs() async {
     //
@@ -26,11 +27,16 @@ class NotifProvider extends ChangeNotifier {
     if (response.statusCode == 200) {
       List data = jsonDecode(response.body);
 
-      data.forEach((json) {
-        notifs.add(Notif.fromJson(json));
-      });
+      if (data.length != notifs.length || isFirstRequest) {
+        notifs.clear();
+        data.forEach((json) {
+          notifs.add(Notif.fromJson(json));
+        });
 
-      print(notifs.toString());
+        isFirstRequest = false;
+
+        notifyListeners();
+      }
     }
   }
 }
