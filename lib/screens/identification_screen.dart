@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:agency/animation/FadeAnimation.dart';
+import 'package:agency/providers/identification.provider.dart';
 import 'package:agency/screens/date_time_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -15,26 +16,51 @@ class IdentificationScreen extends StatefulWidget {
 }
 
 class _IdentificationScreenState extends State<IdentificationScreen> {
-  int _activeStepIndex = 0;
+  int _activeStepIndex = 3;
 
-  TextEditingController telController = TextEditingController();
-  TextEditingController telSecondaireController = TextEditingController();
-  TextEditingController typeIDController = TextEditingController();
-  TextEditingController numeroIDController = TextEditingController();
-  TextEditingController lieuDelivranceIDController = TextEditingController();
-  TextEditingController emissionIDController = TextEditingController();
-  TextEditingController expirationIDController = TextEditingController();
-  TextEditingController nomController = TextEditingController();
-  TextEditingController prenomsController = TextEditingController();
-  TextEditingController lieuNaissanceController = TextEditingController();
-  TextEditingController dateNaissanceController = TextEditingController();
-  TextEditingController professionController = TextEditingController();
-  TextEditingController adresseGeoController = TextEditingController();
-  TextEditingController nationaliteController = TextEditingController();
-  TextEditingController photoIDController = TextEditingController();
-  TextEditingController photoRequerantController = TextEditingController();
-  var photoRequerant, imageID;
+  TextEditingController telController =
+      TextEditingController(text: "010101001");
+  TextEditingController telSecondaireController =
+      TextEditingController(text: "0102020220");
+  TextEditingController typeIDController = TextEditingController(text: "1");
+  TextEditingController numeroIDController =
+      TextEditingController(text: "19AV5619");
+  TextEditingController lieuDelivranceIDController =
+      TextEditingController(text: "Poy");
+  TextEditingController emissionIDController =
+      TextEditingController(text: "2020-06-06");
+  TextEditingController expirationIDController =
+      TextEditingController(text: "2023-06-06");
+  TextEditingController civiliteController =
+      TextEditingController(text: "Monsieur");
+  TextEditingController nomController = TextEditingController(text: "Jonathan");
+  TextEditingController prenomsController =
+      TextEditingController(text: "Dieke");
+  TextEditingController lieuNaissanceController =
+      TextEditingController(text: "Treichville");
+  TextEditingController dateNaissanceController =
+      TextEditingController(text: "2000-12-23");
+  TextEditingController professionController =
+      TextEditingController(text: "Ingénieur développeur");
+  TextEditingController adresseGeoController =
+      TextEditingController(text: "Poy");
+  TextEditingController nationaliteController =
+      TextEditingController(text: "Ivoirienne");
+  // TextEditingController photoIDController = TextEditingController();
+  // TextEditingController photoRequerantController = TextEditingController();
+  File photoRequerant = File("ok") , imageID = File("ok");
 
+  final List<Map<String, dynamic>> _civiliteItems = [
+    {
+      'value': "Monsieur",
+      'label': 'Monsieur',
+      // 'icon': Icon(Icons.stop),
+    },
+    {
+      'value': "Madame",
+      'label': 'Madame',
+    },
+  ];
   final List<Map<String, dynamic>> _typeIDItems = [
     {
       'value': 1,
@@ -184,6 +210,20 @@ class _IdentificationScreenState extends State<IdentificationScreen> {
           content: Container(
             child: Column(
               children: [
+                SelectFormField(
+                  type: SelectFormFieldType.dropdown, // or can be dialog
+                  initialValue: 'Monsieur',
+                  // icon: Icon(Icons.format_shapes),
+                  labelText: 'Civilité',
+                  items: _civiliteItems,
+                  onChanged: (val) {
+                    print(val);
+                    setState(() {
+                      civiliteController.text = val;
+                    });
+                  },
+                  onSaved: (val) => print(val),
+                ),
                 TextField(
                   controller: nomController,
                   decoration: const InputDecoration(
@@ -274,13 +314,13 @@ class _IdentificationScreenState extends State<IdentificationScreen> {
                 ElevatedButton(
                   style: ButtonStyle(),
                   onPressed: () {
-                    imageID = _showImageSource(context, false);
+                    _showImageSource(context, false);
                   },
                   child: Text("Images de l' ID"),
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    photoRequerant = _showImageSource(context, true);
+                     _showImageSource(context, true);
                   },
                   child: Text("Photo réquérant"),
                 ),
@@ -323,7 +363,7 @@ class _IdentificationScreenState extends State<IdentificationScreen> {
                 ),
               ),
               Text(
-                'Sinon vous pouvez ajouter ou modifier les informations.',
+                'Sinon vous pouvez en ajouter ou les modifier.',
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
@@ -342,22 +382,7 @@ class _IdentificationScreenState extends State<IdentificationScreen> {
       appBar: AppBar(title: const Text('Identification de carte SIM')),
       body: NestedScrollView(
         headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
-          return <Widget>[
-            // SliverToBoxAdapter(
-            //     child: FadeAnimation(
-            //   1,
-            //   Padding(
-            //     padding: EdgeInsets.only(top: 50.0, right: 20.0, left: 20.0),
-            //     child: Text(
-            //       "Identification de carte SIM",
-            //       style: TextStyle(
-            //         fontSize: 35,
-            //         color: Colors.grey.shade900,
-            //         fontWeight: FontWeight.bold,
-            //       ),
-            //     ),
-            //   ),
-            // ))
+          return <Widget>[ 
           ];
         },
         body: Padding(
@@ -428,10 +453,11 @@ class _IdentificationScreenState extends State<IdentificationScreen> {
   _getFromGallery(bool requerant) async {
     final ImagePicker _picker = ImagePicker();
     final XFile? image = await _picker.pickImage(source: ImageSource.camera);
+;
     if (requerant) {
-      photoRequerant = image;
+      photoRequerant = File(image!.path);
     } else {
-      imageID = image;
+      imageID = File(image!.path);
     }
   }
 
@@ -439,11 +465,13 @@ class _IdentificationScreenState extends State<IdentificationScreen> {
   _getFromCamera(bool requerant) async {
     final ImagePicker _picker = ImagePicker();
     final XFile? image = await _picker.pickImage(source: ImageSource.camera);
+    print("Vue image : ---> " + image!.path.toString());
     if (requerant) {
-      photoRequerant = image;
+      photoRequerant = File(image.path);
     } else {
-      imageID = image;
+      imageID = File(image.path);
     }
+    print("image ID : ---> " + imageID.path);
   }
 
   Future<ImageSource?> _showImageSource(
@@ -486,9 +514,26 @@ class _IdentificationScreenState extends State<IdentificationScreen> {
     }
   }
 
-
-  _soumettreIdentification(){
-    
+  _soumettreIdentification() {
+    IdentificationProvider id = IdentificationProvider();
+    id.soumettreIdentification(
+        telController.text,
+        telSecondaireController.text,
+        typeIDController.text,
+        numeroIDController.text,
+        lieuDelivranceIDController.text,
+        emissionIDController.text,
+        expirationIDController.text,
+        civiliteController.text,
+        nomController.text,
+        prenomsController.text,
+        lieuNaissanceController.text,
+        dateNaissanceController.text,
+        professionController.text,
+        adresseGeoController.text,
+        nationaliteController.text,
+        imageID,
+        photoRequerant);
   }
 
 //

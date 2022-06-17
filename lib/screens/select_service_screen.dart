@@ -1,6 +1,6 @@
 import 'package:agency/animation/FadeAnimation.dart';
 import 'package:agency/models/service.dart';
-import 'package:agency/screens/InitiationRequeteScreen.dart';
+import 'package:agency/screens/NotificationsScreen.dart';
 import 'package:agency/screens/cleaning_screen.dart';
 import 'package:agency/screens/identification_screen.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +18,7 @@ class _SelectServiceState extends State<SelectService> {
         'https://img.icons8.com/external-vitaliy-gorbachev-flat-vitaly-gorbachev/2x/external-cleaning-labour-day-vitaliy-gorbachev-flat-vitaly-gorbachev.png'),
     Service('Identification',
         'https://img.icons8.com/external-vitaliy-gorbachev-flat-vitaly-gorbachev/2x/external-plumber-labour-day-vitaliy-gorbachev-flat-vitaly-gorbachev.png'),
-    Service('Initiation de requête',
+    Service('Notifications',
         'https://img.icons8.com/external-wanicon-flat-wanicon/2x/external-multimeter-car-service-wanicon-flat-wanicon.png'),
     // Service('Painter',
     //     'https://img.icons8.com/external-itim2101-flat-itim2101/2x/external-painter-male-occupation-avatar-itim2101-flat-itim2101.png'),
@@ -47,7 +47,7 @@ class _SelectServiceState extends State<SelectService> {
                     MaterialPageRoute(builder: (context) {
                       return selectedService == 0
                           ? const CleaningPage()
-                          : ( selectedService == 1 ? IdentificationScreen() : InitiationRequeteScreen() );
+                          : ( selectedService == 1 ? IdentificationScreen() : NotificationsScreen() );
                     }),
                   );
                 },

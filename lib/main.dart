@@ -1,9 +1,14 @@
+import 'package:agency/providers/identification.provider.dart';
+import 'package:agency/providers/notif.provider.dart';
 import 'package:agency/screens/identification_screen.dart';
 import 'package:agency/screens/login_screen.dart';
 import 'package:agency/screens/start_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+
+import 'package:provider/provider.dart';
+
 
 import 'screens/accueil_screen.dart';
 
@@ -19,7 +24,16 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return ResponsiveSizer(builder: (context, orientation, screenType) {
+    return MultiProvider(
+      providers : [
+        ChangeNotifierProvider(create: (context) {
+          return IdentificationProvider();
+        }),
+        ChangeNotifierProvider(create: (context) {
+          return NotifProvider();
+        }),
+      ], 
+      child: ResponsiveSizer(builder: (context, orientation, screenType) {
       return MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Agence Virtuelle',
@@ -41,13 +55,14 @@ class MyApp extends StatelessWidget {
             case "/login":
               return MaterialPageRoute(builder: (_) => const StartScreen());
             case "/identification":
-              return MaterialPageRoute(builder: (_) =>  IdentificationScreen());
-            
+              return MaterialPageRoute(builder: (_) => IdentificationScreen());
+
             default:
               return null;
           }
         },
       );
-    });
+    }),
+    ); 
   }
 }
