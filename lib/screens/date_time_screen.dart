@@ -1,4 +1,4 @@
-import 'package:agency/animation/FadeAnimation.dart';
+import 'package:agency/animation/fade_animation.dart';
 import 'package:agency/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';

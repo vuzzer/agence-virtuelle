@@ -1,15 +1,21 @@
-import 'package:agency/screens/login_screen.dart';
+import 'package:agency/providers/service_provider.dart';
+import 'package:agency/screens/onboarding_screen.dart';
+import 'package:agency/screens/select_service_screen.dart';
 import 'package:agency/screens/start_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
-import 'package:responsive_sizer/responsive_sizer.dart';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 import 'screens/accueil_screen.dart';
 
 void main() {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
-  runApp(const MyApp());
+  runApp(MultiProvider(providers: [
+    ChangeNotifierProvider(create: (context) => ServiceProvider()),
+    Provider(create: (context) => const StartScreen()),
+    Provider(create: (context) => const SelectService()),
+  ], child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -18,7 +24,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return ResponsiveSizer(builder: (context, orientation, screenType) {
+    return ScreenUtilInit(builder: (context, _) {
       return MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Agence Virtuelle',
@@ -34,9 +40,12 @@ class MyApp extends StatelessWidget {
                   fontWeight: FontWeight.bold)),
         ),
         home: const AccueilScreen(),
+        routes: {
+          OnBoardingScreen.routeName:(context) => const OnBoardingScreen()
+        },
         onGenerateRoute: (settings) {
           switch (settings.name) {
-            case "/login":
+            case "/start":
               return MaterialPageRoute(builder: (_) => const StartScreen());
             default:
               return null;

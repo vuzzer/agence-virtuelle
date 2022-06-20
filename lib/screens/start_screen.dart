@@ -1,13 +1,16 @@
 import 'dart:async';
 import 'dart:math';
 
-import 'package:agency/animation/FadeAnimation.dart';
+import 'package:agency/animation/fade_animation.dart';
+import 'package:agency/models/custom_icon.dart';
 import 'package:agency/models/service.dart';
 import 'package:agency/screens/select_service_screen.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class StartScreen extends StatefulWidget {
+  static const routeName = '/start';
   const StartScreen({Key? key}) : super(key: key);
 
   @override
@@ -15,19 +18,15 @@ class StartScreen extends StatefulWidget {
 }
 
 class _StartPageState extends State<StartScreen> {
-  List<Service> services = [
-    Service('Identification',
-        'https://img.icons8.com/external-vitaliy-gorbachev-flat-vitaly-gorbachev/2x/external-cleaning-labour-day-vitaliy-gorbachev-flat-vitaly-gorbachev.png'),
-    Service('Remplacement SIM',
-        'https://img.icons8.com/external-vitaliy-gorbachev-flat-vitaly-gorbachev/2x/external-plumber-labour-day-vitaliy-gorbachev-flat-vitaly-gorbachev.png'),
-    Service('Moov Shop',
-        'https://img.icons8.com/external-wanicon-flat-wanicon/2x/external-multimeter-car-service-wanicon-flat-wanicon.png'), //information commerciales
-    Service('Initiation de requêtes',
-        'https://img.icons8.com/external-itim2101-flat-itim2101/2x/external-painter-male-occupation-avatar-itim2101-flat-itim2101.png'),
-    Service('Moov money',
-        'https://img.icons8.com/fluency/2x/drill.png'), //transert d'argent
-    Service('Moov SIM',
-        'https://img.icons8.com/external-itim2101-flat-itim2101/2x/external-gardener-male-occupation-avatar-itim2101-flat-itim2101.png'), //vente aux enchères
+  final List<CustomIcon> services = [
+    CustomIcon(name: 'Identification', icon: Icons.person ),
+    CustomIcon(name: 'Remplacement\nSIM',icon: Icons.sim_card),
+    CustomIcon(name: 'Moov Shop', icon: Icons.badge), //information commerciales
+    CustomIcon(name: 'Initiation\nde requêtes', icon: Icons.contact_support),
+    CustomIcon(name: 'Moov money',
+      icon: Icons.swap_horiz), //transert d'argent
+    CustomIcon(name: 'Moov SIM',
+       icon: Icons.production_quantity_limits), //vente aux enchères
   ];
 
   int selectedService = 4;
@@ -49,8 +48,8 @@ class _StartPageState extends State<StartScreen> {
     return Scaffold(
         body: Column(
       children: [
-        const SizedBox(
-          height: 100,
+        SizedBox(
+          height: 60.h,
         ),
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 50),
@@ -69,7 +68,7 @@ class _StartPageState extends State<StartScreen> {
                 return FadeAnimation(
                     (1.0 + index) / 4,
                     serviceContainer(
-                        services[index].imageURL, services[index].name, index));
+                        services[index].icon, services[index].name, index));
               }),
         ),
         Expanded(
@@ -82,8 +81,8 @@ class _StartPageState extends State<StartScreen> {
                 )),
             child: Column(
               children: [
-                const SizedBox(
-                  height: 50,
+                SizedBox(
+                  height: 30.h,
                 ),
                 FadeAnimation(
                     1.5,
@@ -102,12 +101,12 @@ class _StartPageState extends State<StartScreen> {
                       ),
                     )),
                 SizedBox(
-                  height: 20,
+                  height: 10.h,
                 ),
                 FadeAnimation(
                     1.5,
                     Container(
-                      padding: EdgeInsets.symmetric(horizontal: 60),
+                      padding: EdgeInsets.symmetric(horizontal: 30.sp),
                       child: Center(
                         child: Text(
                           'Nous mettons à votre dispositon des opérations d\'agence.',
@@ -119,10 +118,13 @@ class _StartPageState extends State<StartScreen> {
                         ),
                       ),
                     )),
+                  SizedBox(
+                  height: 19.h,
+                ),
                 FadeAnimation(
                     1.5,
                     Padding(
-                      padding: EdgeInsets.all(10.0),
+                      padding: EdgeInsets.all(5.sp),
                       child: MaterialButton(
                         elevation: 0,
                         color: Colors.black,
@@ -137,7 +139,7 @@ class _StartPageState extends State<StartScreen> {
                         height: 55,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10)),
-                        child: Center(
+                        child: const Center(
                           child: Text(
                             'Demarrer',
                             style: TextStyle(
@@ -157,7 +159,7 @@ class _StartPageState extends State<StartScreen> {
     ));
   }
 
-  serviceContainer(String image, String name, int index) {
+  serviceContainer(IconData icon, String name, int index) {
     return GestureDetector(
       onTap: () {},
       child: AnimatedContainer(
@@ -176,14 +178,16 @@ class _StartPageState extends State<StartScreen> {
         child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Image.network(image, height: 30),
+               Icon(icon, size: 20, color: const Color(0xFFF15412)),
               const SizedBox(
-                height: 10,
+                height: 20,
               ),
-              AutoSizeText(
+              FittedBox(child: AutoSizeText(
                 name,
-                style: TextStyle(fontSize: 10),
-              )
+                softWrap: true,
+                textAlign: TextAlign.center,
+                style: const TextStyle(fontSize: 10),
+              ))
             ]),
       ),
     );

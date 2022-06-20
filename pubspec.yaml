@@ -38,7 +38,14 @@ dependencies:
   simple_animations: ^4.1.0
   scrollable_positioned_list: ^0.3.2
   intl_phone_number_input: ^0.7.0+2
-
+  provider: ^6.0.3
+  flutter_screenutil: ^5.5.3+2
+  iconsax: ^0.0.8
+  flutter_svg: ^1.1.0
+  page_transition: ^2.0.7
+  shared_preferences: ^2.0.15
+  bouncing_widget: ^2.0.0
+  pattern_formatter: ^2.0.0
 
 
 flutter_native_splash:
@@ -79,6 +86,7 @@ flutter:
   assets:
      - assets/images/
      - assets/background-images/
+     - assets/nfts/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
@@ -108,5 +116,12 @@ flutter:
            weight: 300
          - asset: assets/fonts/RobotoCondensed-Italic.ttf
            style: italic
+     - family: Dsignes
+       fonts:
+         - asset: assets/fonts/DsignesR.ttf
+         - asset: assets/fonts/DsignesL.ttf
+           weight: 200
+         - asset: assets/fonts/DsignesB.ttf
+           weight: 600
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
