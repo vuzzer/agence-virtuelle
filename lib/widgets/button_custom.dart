@@ -27,7 +27,7 @@ class _ButtonCustomState extends State<ButtonCustom> {
           _isLoading = true;
         });
 
-        Future.delayed(Duration(seconds: 2), () {
+        Future.delayed(const Duration(seconds: 2), () {
           setState(() {
             _isLoading = false;
           });
